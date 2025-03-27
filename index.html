@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粤港澳大湾区</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: #5ec2ff;
+            color: #fff;
+            font-family: "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .header-image {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            max-width: none;
+            height: auto;
+            object-fit: contain;
+            object-position: top;
+            z-index: -1;
+            opacity: 1;
+            display: block;
+        }
+
+        header {
+            height: auto;
+            position: relative;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+            overflow: visible;
+            margin-bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-top: 64px;
+        }
+
+        header::after {
+            display: none;
+        }
+
+        header h1 {
+            display: none;
+        }
+
+        nav {
+            background-color: white;
+            padding: 0.5rem 4rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-title {
+            font-size: 20px;
+            color: #333;
+            font-weight: normal;
+            white-space: nowrap;
+            margin-right: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: flex-end;
+            flex: 1;
+            gap: 3rem;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 0 0.5rem;
+            font-weight: normal;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #4CAF50;
+            border-bottom-color: #4CAF50;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 0;
+            margin-top: 1px;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f5f5f5;
+            color: #4CAF50;
+        }
+
+        .nav-link.home {
+            color: #4CAF50;
+        }
+
+        section {
+            padding: 2rem 0;
+            /* min-height: 400px; */
+        }
+
+        #home {
+            padding-top: 2rem;
+        }
+
+        #home h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-bottom: 2px solid rgba(44, 62, 80, 0.1);
+        }
+
+        /* 修改统一容器的基础样式 */
+        .introduction-content,
+        .section-content,
+        .flex-container,
+        .flourish-container,
+        .industry-image-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        /* 移除重复的样式定义 */
+        .introduction-content {
+            position: relative;
+            z-index: 1;
+            background-color: transparent;
+            box-shadow: none;
+            margin-top: 0;
+            /* 移除重复的 max-width 和 padding 定义 */
+        }
+
+        .section-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            overflow: visible;
+        }
+
+        /* 修改图表容器的特殊样式 */
+        .flourish-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 600px; /* 与宽度相同，保持正方形 */
+            margin: 4rem; /* 增加上下边距，避免重叠 */
+            padding: 0 4rem; /* 与文字容器保持一致的内边距 */
+            position: relative;
+        }
+
+        /* 确保嵌入的图表填满容器 */
+        .flourish-embed {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 修改flex容器的特殊样式 */
+        .flex-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 4rem;
+            display: block;
+        }
+
+        .text-content {
+            width: 100%;
+            padding-right: 0;
+            margin-bottom: 2rem;
+            max-width: 1200px;
+        }
+
+        .text-content .introduction-paragraph {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            padding: 0;
+        }
+
+        .chart-content {
+            width: 100%;
+        }
+
+        /* 移除其他容器中重复的宽度和内边距定义 */
+        #why-together .flourish-container,
+        #achievements .flourish-container {
+            height: 500px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* 确保图片容器也遵循相同的宽度规则 */
+        .bridge-image:not(.full-width),
+        .policy-image:not(.full-width) {
+            max-width: 1200px;
+            margin: 2rem auto;
+            width: 100%;
+            display: block;
+        }
+
+        .introduction-paragraph {
+            margin-bottom: 2rem;
+            text-indent: 2em;
+            font-size: 20px;
+            line-height: 2;
+            color: #fff;
+        }
+
+        .flourish-container {
+            width: 100%;
+            margin: 2rem auto;
+            background-color: transparent;
+            box-shadow: none;
+            border-radius: 12px;
+            box-shadow: none;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            background: #5ec2ff;
+            padding-top: 0;
+            margin-top: 0;
+            min-height: 100vh;
+        }
+
+        .background-container {
+            display: none;
+        }
+
+        .chart-content {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+            
+            .text-content {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+
+        #why-together h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            text-shadow: none;
+            padding: 1rem;
+            border-bottom: none;
+            font-weight: normal;
+        }
+
+        #why-together .flourish-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 2rem auto;
+            height: 500px;
+        }
+
+        @media (max-width: 768px) {
+            #why-together .flourish-container {
+                width: 100%;
+            }
+        }
+
+        .policy-image {
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        /* 添加小标题和段落的样式 */
+        .section-content h3 {
+            font-size: 35px;
+            color: rgb(252, 220, 173);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+            font-size: 25px;
+            line-height: 2;
+            color: #fff;
+        }
+
+        /* 添加四级标题样式 */
+        .section-content h4 {
+            font-size: 30px;
+            color: #7ffef1;
+            margin: 3rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid #7ffef1;
+        }
+
+        /* 为特定的标题添加额外的上边距 */
+        .section-content h4:first-of-type {
+            margin-top: 4rem;
+        }
+
+        /* 确保achievements部分的图表容器与why-together部分保持一致 */
+        #achievements .flourish-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 2rem auto;
+            height: 500px;
+        }
+
+        @media (max-width: 768px) {
+            #achievements .flourish-container {
+                width: 100%;
+            }
+        }
+
+        /* 添加桥梁图片的样式 */
+        .bridge-image {
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+
+
+        /* 添加图片切换效果的样式 */
+        .industry-image-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            position: relative;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        /* 修改产业图片样式 */
+        .industry-image {
+            width: 80%; /* 增大图片尺寸 */
+            max-width: 800px; /* 设置最大宽度 */
+            height: auto;
+            display: inline-block;
+            border-radius: 12px;
+            box-shadow: none;
+            transition: opacity 0.5s ease;
+        }
+
+        /* 保留切换效果的样式 */
+        .image-after {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .industry-image-container:hover .image-after {
+            opacity: 1;
+        }
+
+        /* 统一所有一级标题的样式 */
+        .section-content h2,
+        #why-together .section-content h2,
+        #achievements .section-content h2 {
+            background-image: url('./images/标题背景图.png');
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+            font-size: 60px;
+            line-height: 200px;
+            text-align: center;
+            text-indent: 0;
+            text-shadow: 3px 3px 15px #00315e;
+            padding: 0;
+            margin: 2rem 0;
+            border: none;
+            font-weight: normal;
+            letter-spacing: 4px;
+        }
+
+        #ending {
+            position: relative;
+            /* padding-bottom: 50vh;
+            margin-bottom: 20vh; */
+        }
+
+        #ending .section-content {
+            background-color: transparent;
+            backdrop-filter: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #ending .section-content:hover {
+            background-color: transparent;
+        }
+
+        footer {
+            position: relative;
+            padding: 1rem;
+            text-align: center;
+            background: transparent;
+            color: #fff;
+        }
+
+        /* 修改全宽图片样式 */
+        .bridge-image.full-width,
+        .policy-image.full-width {
+            width: 100vw;
+            max-width: none;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 2rem 0;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: -1; /* 确保图片在渐变背景之下 */
+        }
+
+        /* 添加容器样式确保图片不会造成水平滚动 */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* 修改全宽图片样式，使其适用于所有full-width类的图片 */
+        .bridge-image.full-width,
+        .policy-image.full-width {
+            width: 100vw;
+            max-width: none;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 2rem 0;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: -1; /* 确保图片在渐变背景之下 */
+        }
+
+        /* 修改渐变容器样式 */
+        .gradient-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* 使用视窗高度 */
+            overflow: hidden;
+            margin: 4rem 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(240, 248, 255, 1) 0%,
+                rgba(240, 248, 255, 0.5) 30%,
+                rgba(240, 248, 255, 0) 100%
+            );
+        }
+
+        /* 修改全宽图片样式 */
+        .bridge-image.full-width,
+        .policy-image.full-width {
+            width: 100vw;
+            max-width: none;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: -1; /* 确保图片在渐变背景之下 */
+        }
+
+        /* 修改特殊文字样式 */
+        .highlight {
+            color: rgb(252, 240, 173); 
+        }
+
+        /* 添加滚动渐变效果 */
+        .gradient-overlay {
+            display: none;
+        }
+
+        /* 添加JavaScript来控制渐变效果 */
+
+        /* 修改大标题样式 */
+        .section-content h2 {
+            background-image: url('./images/标题背景图.png');
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+            font-size: 60px;
+            line-height: 200px;
+            text-align: center;
+            text-indent: 0;
+            text-shadow: 3px 3px 15px #00315e;
+            padding: 0;
+            margin: 2rem 0;
+            border: none;
+            font-weight: normal;
+        }
+
+        /* 确保背景图片路径正确 */
+        /* 删除或注释掉这些重复的样式
+        #why-together h2,
+        #achievements h2 {
+            background-image: url('./images/标题背景图.png');
+        }
+        */
+
+        /* 修改标题和图表之间的间距
+        #bay-history h3 {
+            margin: 0;
+            padding: 0;
+        } */
+
+        /* 修改flourish-embed的样式 */
+        .flourish-embed.flourish-quiz {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* 确保容器不添加额外间距 */
+        #bay-history {
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+        }
+
+        /* 调整section的边距 */
+        #bay-history {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 调整flourish-container的上边距 */
+        .flourish-container {
+            margin-top: 0;
+        }
+
+        /* 修改iframe的样式 */
+        .flourish-embed-iframe {
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100% !important;
+        }
+
+        /* 移除flourish-credit的边距 */
+        .flourish-credit {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* 移除所有可能的间距 */
+        .section-content > * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 恢复section-content的内边距 */
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem; /* 恢复左右内边距 */
+        }
+
+        /* 确保body和html不会限制宽度 */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            scroll-padding-top: 64px; /* 导航栏的高度 */
+        }
+
+        /* 修改图片容器样式 */
+        .full-width-container {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 添加数据突出显示的样式 */
+        .highlight-data {
+            color: rgb(255, 240, 173); /* 使用橙色突出显示 */
+            font-size: 1.2em; /* 字号增大20% */
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="gradient-overlay"></div>
+    <div class="background-container"></div>
+    <nav>
+        <div class="nav-title">粤港澳大湾区五周年：我们缘何而聚，功成几何？</div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#header" class="nav-link">首页</a>
+            </li>
+            <li class="nav-item">
+                <a href="#first-paragraph" class="nav-link">引言</a>
+            </li>
+            <li class="nav-item">
+                <a href="#why-together" class="nav-link">缘何而聚</a>
+                <div class="dropdown-menu">
+                    <a href="#bay-history" class="dropdown-item">湾区印记：湾区城市间的历史纽带</a>
+                    <a href="#bay-present" class="dropdown-item">湾区共生：湾区城市间的今朝契机</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#achievements" class="nav-link">功成几何</a>
+                <div class="dropdown-menu">
+                    <a href="#distance" class="dropdown-item">距离在缩短：更紧密的湾区联系</a>
+                    <a href="#happiness" class="dropdown-item">幸福在增大：更美好的湾区生活</a>
+                    <a href="#identity" class="dropdown-item">认同在加深：更团结的"大湾区人"</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#ending" class="nav-link">尾声</a>
+            </li>
+        </ul>
+    </nav>
+
+    <header id="header">
+        <img src="./images/头图1.jpeg" alt="粤港澳大湾区" class="header-image">
+        <div id="first-paragraph" style="position: absolute; bottom: 0;"></div>
+    </header>
+    
+    <main>
+        <section id="introduction">
+            <div class="section-content">
+                <p class="introduction-paragraph">
+                    当晨曦的第一缕阳光洒落在珠江口的波光粼粼之上，粤港澳大湾区迎来了她五周岁的生日。香港、澳门和珠三角九市越发融合为一个和谐的湾区，展现出其深邃的内涵与广阔的前景。五年来，大湾区以不到全国<span class="highlight-data">1%</span>的国土面积、<span class="highlight-data">6%</span>的人口总量，创造出全国<span class="highlight-data">11%</span>的GDP，展现出无限的活力与潜力。
+                </p>
+                
+                <p class="introduction-paragraph">
+                    自2018年以来，大湾区经济总量从<span class="highlight-data">10.8万亿</span>元增长到2023年的超过<span class="highlight-data">14万亿</span>元，显示出强劲的增长势头，这一增长相当于"新造了一个深圳"。在这五年间，内地9市进出口总额接近<span class="highlight-data">40万亿</span>元，进一步体现了大湾区在全球经济中的重要地位。
+                </p>
+                    
+                <div class="flourish-container"  style="height: 600px;">
+                    <iframe src='https://flo.uri.sh/visualisation/20870430/embed' 
+                        title='Interactive or visual content' 
+                        class='flourish-embed-iframe' 
+                        frameborder='0' 
+                        scrolling='no' 
+                        style='width:100%;height:600px;' 
+                        sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                    </iframe>
+                    <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                        <a class='flourish-credit' 
+                        href='https://public.flourish.studio/visualisation/20870430/?utm_source=embed&utm_campaign=visualisation/20870430' 
+                        target='_top' 
+                        style='text-decoration:none!important'>
+                        <img alt='Made with Flourish' 
+                            src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                            style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> 
+                        </a>
+                    </div>
+                </div>
+
+                
+                <p class="introduction-paragraph" style="margin-top: 2.5rem;">
+                    历史的巨轮滚滚向前，五年虽短，但足以见证一个区域的蜕变与崛起。五年后的今日，我们有必要重温湾区城市缘何而聚，细数湾区功成几何。湾区城市缘何而聚？既缘于城市间紧密的历史印记，又依靠湾区城市间的今朝机遇。湾区又功成几何？五年间，它用闪耀的数据与动人的故事，回答了这一命题。
+                </p>
+
+                <p class="introduction-paragraph">
+                    在这个里程碑的时刻，我们回望过去，深刻总结，凝聚力量，准备好迎接未来更加光辉的明天。
+                </p>
+            </div>
+        </section>
+
+        <section id="why-together">
+            <div class="section-content">
+                <h2>缘何而聚</h2>
+                
+                <section id="bay-history">
+                    <h3>湾区印记：湾区城市间的历史纽带</h3>
+                </section>
+                <div class="flourish-container" style="height: 600px;">
+                    <iframe src='https://flo.uri.sh/visualisation/21031914/embed'
+                        title='Interactive or visual content' 
+                        class='flourish-embed-iframe' 
+                        frameborder='0' 
+                        scrolling='yes' 
+                        style='width:100%;height:600px;'
+                        sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                    </iframe>
+                    <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                        <a class='flourish-credit' 
+                        href='https://public.flourish.studio/visualisation/21031914/?utm_source=embed&utm_campaign=visualisation/21031914' 
+                        target='_top' 
+                        style='text-decoration:none!important'>
+                        <img alt='Made with Flourish' 
+                            src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                            style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> 
+                        </a>
+                    </div>
+                </div>
+                
+                <p>这五年，香港、澳门与珠三角九市在粤港澳大湾区的建设中走向深度融合。但其实，在明清时期，珠三角湾区便以一个统一的城市面貌呈现于世人面前。广州、深圳、香港、澳门、东莞、佛山、中山、珠海、江门这些城市曾共同构成了一个辉煌的城市——广州府。</p>
+                
+                <img src="./images/政策2.png" alt="大湾区政策" class="bridge-image full-width" style="padding-left: 10%; padding-right: 10%;">
+                
+                <br>
+                
+                <p>广州府在明清时期便以其独特的经济地位而著称。《广州府志》中对广州府的繁华有"江山清霁，炳矣人文，都邑繁华，蔚然物采"的描绘。其经济政策同样颇具特色，《广州府志》中专设盐政门以记载广州海盐贸易，反映了广州府在明清时期的特殊经济地位。</p>
+
+                <section id="bay-present">
+                    <h3>湾区共生：湾区城市间的今朝契机</h3>
+                    <p>在长期论证后，我国将推进粤港澳大湾区建设设定为国家战略，出台了一系列政策支持，旨在推动香港、澳门与珠三角九市的深度融合，共同为实现中华民族伟大复兴的宏伟目标贡献力量。</p>
+                    <img src="./images/政策1.png" alt="大湾区政策" class="bridge-image full-width" style="padding-left: 10%; padding-right: 10%;">
+                    <br>
+                    <p>于是，在历经历史的浮沉后，湾区城市又遇见了新契机。机缘既已汇聚于此，湾区也将勇立潮头。</p>
+                </section>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <div class="section-content">
+                <h2>功成几何</h2>
+                
+                <section id="distance">
+                    <h3>距离在缩短：更紧密的湾区联系</h3>
+                    
+                    <h4>基础设施加强：交通与生活距离"变小"了</h4>
+                    <p class="introduction-paragraph">随着粤港澳大湾区基础设施建设的加速，区域交通连通性大幅提升，物理距离逐渐缩短。自2018年以来，广东省铁路网络从<span class="highlight-data">28</span>条增至<span class="highlight-data">41</span>条，里程由<span class="highlight-data">885</span>公里增至<span class="highlight-data">1383</span>公里，形成了包括国家铁路、城际铁路和城市轨道交通在内的三级网络，现有及在建线路超过<span class="highlight-data">5400</span>公里，未来规划将突破<span class="highlight-data">1万</span>公里。</p>
+
+                    <div class="flourish-container" style="height: 600px;">
+                        <iframe src='https://flo.uri.sh/visualisation/20941067/embed' 
+                                title='Interactive or visual content' 
+                                class='flourish-embed-iframe' 
+                                frameborder='0' 
+                                scrolling='no' 
+                                style='width:100%;height:100%;' 
+                                sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                        </iframe>
+                        <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                            <a class='flourish-credit' 
+                               href='https://public.flourish.studio/visualisation/20941067/?utm_source=embed&utm_campaign=visualisation/20941067' 
+                               target='_top' 
+                               style='text-decoration:none!important'>
+                                <img alt='Made with Flourish' 
+                                     src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                     style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'>
+                            </a>
+                        </div>
+                    </div>
+
+                    <p class="introduction-paragraph">在跨江跨海通道建设方面，多个重要大桥已投入使用，包括2018年通车的港珠澳大桥、2019年通车的南沙大桥、2024年通车的深中通道和黄茅海跨海通道。港珠澳大桥缩短珠海至香港的距离<span class="highlight-data">69%</span>；南沙大桥将广州到东莞的车程缩短<span class="highlight-data">26%</span>；深中通道将中山到深圳的时间缩短<span class="highlight-data">76%</span>；黄茅海跨海通道使江门至珠海的通行时间缩短<span class="highlight-data">48%</span>。大湾区"一小时生活圈"加速形成。</p>
+                </div>
+
+                <img src="./images/大桥浅色.png" alt="大湾区跨海大桥" style="width: 70vw; max-width: 100vw; position: relative; left: 50%; transform: translateX(-50%); margin: 2rem 0; border-radius: 0; box-shadow: none;">
+
+                <div class="section-content">
+                    <h4>科技与经济建设加强：产业协同与创新距离"变小"了</h4>
+                    <p class="introduction-paragraph">
+                        从2018年到2022年，粤港澳大湾区在科技与经济建设方面显著加强，产业协同与创新距离不断缩小。
+                    </p>
+
+                    <p class="introduction-paragraph">
+                        科研投入从2018年的<span class="highlight-data">2248亿</span>元增长到2022年的<span class="highlight-data">4269亿</span>元，显示出大湾区对科技创新的持续重视和支持。同时，专利授权量也从2018年的<span class="highlight-data">38万</span>余件增加到2022年的<span class="highlight-data">76万</span>余件，这一增长不仅反映了创新活动的活跃度，也表明了大湾区在知识产权保护和利用方面的进步。
+                    </p>
+
+                    <div style="display: flex;">
+                        <div class="flourish-container" style="height: 600px;">
+                            <iframe src='https://flo.uri.sh/visualisation/20941237/embed' 
+                                title='Interactive or visual content'  
+                                class='flourish-embed-iframe' 
+                                frameborder='0' 
+                                scrolling='no' 
+                                style='width:100%;height:600px;' 
+                                sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                            </iframe>
+                            <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                                <a class='flourish-credit' 
+                                    href='https://public.flourish.studio/visualisation/20941237/?utm_source=embed&utm_campaign=visualisation/20941237' 
+                                    target='_top' 
+                                    style='text-decoration:none!important'>
+                                    <img alt='Made with Flourish'  
+                                        src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                        style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> 
+                                </a>
+                            </div>
+                        </div>
+                            
+                        <div class="flourish-container" style="height: 600px;">
+                            <iframe src='https://flo.uri.sh/visualisation/20941281/embed' 
+                                title='Interactive or visual content' 
+                                class='flourish-embed-iframe' 
+                                frameborder='0' 
+                                scrolling='no' 
+                                style='width:100%;height:600px;' 
+                                sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                            </iframe>
+                            <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                                <a class='flourish-credit' 
+                                    href='https://public.flourish.studio/visualisation/20941281/?utm_source=embed&utm_campaign=visualisation/20941281' 
+                                    target='_top' 
+                                    style='text-decoration:none!important'>
+                                    <img alt='Made with Flourish' 
+                                        src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                        style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> 
+                                </a>
+                            </div>
+                       </div>
+                    </div>
+                    
+
+
+                    <br>
+                    <p class="introduction-paragraph">
+                        粤港澳大湾区的产业链深度合作和企业协同发展，正推动区域经济联系日益紧密。大湾区形成了三大产业集群：珠江东岸以深圳、东莞为核心，依托高新技术和先进制造业，推动科技创新；广佛肇地区利用传统产业优势，向高附加值产业转型，展现产业升级潜力；珠中江组团通过交通枢纽优化产业布局，推动珠海、中山等地的产业集聚。这种跨区域协作促进了资源高效流动，并为区域经济一体化提供了重要支撑。<br>
+                    </p>
+
+                    <p style="text-align: center; color: #268cfa;fff; font-size: 1rem; margin: 1rem 0;">鼠标移动至图片上方查看产业变迁</p>
+
+                    <div class="industry-image-container">
+                        <img src="./images/产业before.png" alt="大湾区产业布局前" class="industry-image image-before">
+                        <img src="./images/产业after.png" alt="大湾区产业布局后" class="industry-image image-after">
+                    </div>
+                    <br>
+                    <p class="introduction-paragraph">
+                        科技创新驱动为产业升级和企业协作提供了强劲动力。广东省国家级高新技术企业数量从2018年的<span class="highlight-data">4.5万</span>家增至2023年的<span class="highlight-data">7.5万</span>家，连续<span class="highlight-data">8</span>年全国领先，这推动了产业链上下游的全面协作。同时，独角兽企业数量从2019年的<span class="highlight-data">35</span>家增至<span class="highlight-data">70</span>家，涵盖电子信息、智能家电、绿色石化等多个领域。这些企业不仅凸显了大湾区在全球创新中的重要地位，也促进了区域产业链的深度协作，助力"8372"战略性产业集群的高质量发展。
+                    </p>
+
+                    <div class="flourish-container" style="height: 800px;">
+                        <iframe src='https://flo.uri.sh/visualisation/20869166/embed' 
+                            title='Interactive or visual content' 
+                            class='flourish-embed-iframe' 
+                            frameborder='0' 
+                            scrolling='no' 
+                            style='width:100%;height:600px;' 
+                            sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                        </iframe>
+                        <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                            <a class='flourish-credit' 
+                                href='https://public.flourish.studio/visualisation/20869166/?utm_source=embed&utm_campaign=visualisation/20869166' 
+                                    target='_top' 
+                                    style='text-decoration:none!important'>
+                                    <img alt='Made with Flourish'  
+                                        src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                        style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'>
+                            </a>
+                        </div>
+                    </div>
+
+                    <br>
+                    <h4>环境保护协作加强：生态距离"变小"了</h4>
+                    <p class="introduction-paragraph">
+                        随着粤港澳大湾区的快速发展，环境保护协作显著加强，生态距离不断"变小"。绿色基础设施建设成为重要方向，节能环保建筑和绿色交通网络的普及提升了区域的可持续发展水平。
+                    </p>
+
+                    <p class="introduction-paragraph">
+                        例如，珠海和深圳等城市积极推动绿色建筑和能源系统的建设，广州市的绿色出行指数持续增长。此外，大湾区还加强了跨境环境治理合作，珠江水系的污染治理跨越了广东和澳门的行政区划，多个地方政府和企业联手开展跨境水污染治理项目。2023年，粤港澳珠江三角洲区域空气监测网络显示，空气中的二氧化硫、二氧化氮、一氧化碳、颗粒物PM10和PM2.5浓度均显著下降，浓度年均值从高峰水平下降最高至<span class="highlight-data">86%</span>。同时，大湾区在推动绿色能源应用方面也取得了积极进展，2023年清洁能源占总能源消费比重已突破<span class="highlight-data">30%</span>。这些举措不仅提升了区域生态环境质量，也为人与自然的和谐共生奠定了坚实基础。
+                    </p>
+
+                    <img src="./images/环境.png" style="width: 70vw; max-width: 100vw; position: relative; left: 50%; transform: translateX(-50%); border-radius: 0; box-shadow: none; margin-bottom: 20px;">
+                </div>
+
+                <div class="section-content">
+                    <section id="happiness">
+                        <h3>幸福在增大：更美好的湾区生活</h3>
+                        
+                        <p class="introduction-paragraph">
+                            随着粤港澳大湾区建设的深入推进，跨境医疗、教育及职业资格互认等领域的一系列政策逐步落地，极大地便利了湾区人民的生活。
+                        </p>
+                        
+                        <div class="flourish-container" style="height: 800px;">
+                            <iframe src='https://flo.uri.sh/visualisation/20967338/embed' 
+                                title='Interactive or visual content' 
+                                class='flourish-embed-iframe' 
+                                frameborder='0' 
+                                scrolling='no' 
+                                style='width:100%;height:800px;' 
+                                sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                            </iframe>
+                            <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                                <a class='flourish-credit' 
+                                    href='https://public.flourish.studio/visualisation/20967338/?utm_source=embed&utm_campaign=visualisation/20967338' 
+                                    target='_top' 
+                                    style='text-decoration:none!important'>
+                                    <img alt='Made with Flourish' 
+                                        src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                        style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'>
+                                </a>
+                            </div>
+                        </div>
+
+                        <h4>教育协作加强：湾区学习更幸福</h4>
+                        <p class="introduction-paragraph">
+                            在教育领域，一幅教育资源共享、人才协同培养的美好画卷在大湾区徐徐展开。在高等教育领域，近年来，香港、澳门多所高校率先在大湾区设立分校或合作办学机构，深圳大学、中山大学等内地大学也把研究机构开到港澳地区。除了高等教育，粤港澳大湾区基础教育领域的合作也在深化。广州、深圳等城市优质教育资源的开放，吸引了大量港澳学生前来求学。<span class="highlight-data">仅2023年</span>，便有超过<span class="highlight-data">8万</span>名港澳学生在广东中小学就读。
+                        </p>
+
+                        <h4>社会保障加强：湾区保障更全面</h4>
+                        <p class="introduction-paragraph">
+                            在医疗和社会保障方面，跨境对接的深化为港澳居民提供了更加全面的保障。据统计，已有超过<span class="highlight-data">30万</span>港澳居民参加了广东的养老、失业、工伤等社会保险，享受与内地居民同等的医疗保障和社会福利。在跨境医保方面，广东与香港、澳门的医疗机构合作不断加强，港澳居民在内地就医的报销比例和覆盖面显著提高。
+                        </p>
+
+                        <p class="introduction-paragraph">
+                            此外，大湾区还在养老保障方面推出了多项政策，确保港澳居民在内地能够享受更好的养老服务。2023年，超过<span class="highlight-data">20万</span>港澳居民在广东享受到了养老服务，这为大湾区内的跨境生活提供了更加坚实的保障，进一步增强了居民的幸福感。
+                        </p>
+
+                        <div class="flourish-container" style="height: 800px;">
+                            <iframe src='https://flo.uri.sh/visualisation/20946643/embed' 
+                                title='Interactive or visual content' 
+                                class='flourish-embed-iframe' 
+                                frameborder='0' 
+                                scrolling='no' 
+                                style='width:100%;height:600px;' 
+                                sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                            </iframe>
+                            <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                                <a class='flourish-credit'
+                                 href='https://public.flourish.studio/visualisation/20946643/?utm_source=embed&utm_campaign=visualisation/20946643' 
+                                 target='_top' style='text-decoration:none!important'><img alt='Made with Flourish' 
+                                 src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                 style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> 
+                                </a>
+                            </div>
+                        </div>
+
+                        <h4>食品保障加强：湾区饮食更安全</h4>
+                        <p class="introduction-paragraph">
+                            在食品保障方面，粤港澳大湾区的"菜篮子"建设也为居民提供了更多的安全、绿色食品。根据2019年广州市发布的《粤港澳大湾区"菜篮子"建设实施方案》，广州已在全国认定了<span class="highlight-data">2422</span>个"菜篮子"生产基地，涵盖蔬菜、水果、肉类、水产等多个领域，为大湾区居民提供了高质量的新鲜食材。尤其是"绿色通道"项目的实施，大大提升了农产品的流通效率和新鲜度，确保了食品的安全性和营养丰富性。
+                        </p>
+
+
+    
+                            <div class="flourish-container" style="height: 600px;">
+                                <iframe src='https://flo.uri.sh/visualisation/20938962/embed' 
+                                    title='Interactive or visual content' 
+                                    class='flourish-embed-iframe' 
+                                    frameborder='0' 
+                                    scrolling='no' 
+                                    style='width:100%;height:600px;' 
+                                    sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                                </iframe>
+                                <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                                    <a class='flourish-credit' 
+                                        href='https://public.flourish.studio/visualisation/20938962/?utm_source=embed&utm_campaign=visualisation/20938962' 
+                                        target='_top' style='text-decoration:none!important'>
+                                        <img alt='Made with Flourish' 
+                                            src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                            style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'>
+                                     </a>
+                                </div>
+                            </div>                       
+                        <br>
+                  
+
+
+                        <p class="introduction-paragraph">
+                            随着这些政策的实施，医疗、住房、教育等民生领域的服务质量也显著提高。港澳青年更积极融入大湾区，仅在广东工作的港澳青年人数已突破20万。通过不断完善政策机制，粤港澳大湾区为居民创造了更加便捷、宜居的跨境生活环境，也为区域一体化发展注入了新的动力，人民的幸福感与归属感不断增强。
+                        </p>
+
+                    <div class="flourish-container" style="height: 600px;">
+                        <iframe src='https://flo.uri.sh/visualisation/20965903/embed' 
+                            title='Interactive or visual content' 
+                            class='flourish-embed-iframe' 
+                            frameborder='0' 
+                            scrolling='no' 
+                            style='width:100%;height:600px;' 
+                            sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                        </iframe>
+                        <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                            <a class='flourish-credit' 
+                                href='https://public.flourish.studio/visualisation/20965903/?utm_source=embed&utm_campaign=visualisation/20965903' 
+                                target='_top' 
+                                style='text-decoration:none!important'>
+                                <img alt='Made with Flourish'  
+                                    src='https://public.flourish.studio/resources/made_with_flourish.svg' 
+                                    style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                   
+                <section id="identity">
+                    <br>
+                    <br>
+                    <h3>认同在加深：更团结的"大湾区人"</h3>
+                    <p class="introduction-paragraph">
+                        随着粤港澳大湾区的紧密交融，湾区各城市的越来越多的人认同湾区的发展规划，更认同自己是一个"大湾区人"。根据香港广东青年发展总会的调查，香港青年对前往大湾区内地城市发展的看法整体愈发积极。
+                    </p>
+
+                    <div class="flourish-container" style="height: 800px;">
+                        <iframe src='https://flo.uri.sh/visualisation/20966567/embed' 
+                                title='Interactive or visual content' 
+                                class='flourish-embed-iframe' 
+                                frameborder='0' 
+                                scrolling='no' 
+                                style='width:100%;height:100%;' 
+                                sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+                        </iframe>
+                    </div>
+
+                    <p class="introduction-paragraph">
+                        除了经济发展上的认同外，文化交流也变得更为频繁。除了自2021年开办的《"湾区升明月"大湾区电影音乐晚会》外，越来越多带有湾区元素的节目出现在大众视野中。《声生不息》是由芒果TV和湖南卫视联合制作的音乐竞唱交流节目，最新一季的《声生不息·大湾区季》首日热度<span class="highlight-data">9853.83</span>，突破前几季记录，成为连接人心、引领潮流的音乐新标杆之作。
+                    </p>
+
+                    <p class="introduction-paragraph">
+                        此外，更多人也在用自己的言行表达对自己"大湾区人"身份的认同。
+                    </p>
+
+                    
+                    
+                    <div style="display: flex;">
+                        <img src="./images/feima.gif" style="height:400px; width: 300px; margin-right: 1rem;">
+                        <p class="introduction-paragraph">
+                            2023年3月7日上午，在全国政协十四届一次会议第二场"委员通道"上，来自澳门的全国政协委员何超琼说：“有人说我是澳门人，有人说我是香港人，<span class="highlight-data">但我会说我是大湾区人。</span>”<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;在《声生不息·大湾区季》泪洒现场，高唱中国人的嘉宾"肥妈"玛丽亚·科尔德罗1954年出生于澳门，9岁移居香港，直到45岁时才有机会堂堂正正地说出<span class="highlight-data">“我是中国人，我是中国澳门人！”</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;她对于大湾区有着非常深厚的感情“大湾区是很大的发展机会，我的选择是对的！”她如是说。
+                        </p>
+                    </div>
+
+                    <p class="introduction-paragraph">
+                        从"香港人"、"澳门人"到"大湾区人"，措辞之变所折射的，是深层次的身份认同之变。更融合的大湾区正在实现，更团结的"大湾区人"也在携手走向未来！
+                    </p>
+                </section>
+            </section>
+        </div>
+    </section>
+
+    <section id="ending">
+        <div class="section-content">
+            <h2>尾声</h2>
+            <p class="introduction-paragraph">
+                当夜幕的星辰渐渐隐去，粤港澳大湾区在晨光的洗礼中，走过了五年。五年，对于这片充满活力的土地而言，既是时间的见证，也是发展的缩影。在这片土地上，每一座城市、每一条街道、每一位劳动者，都在见证着这场宏大的变革。
+            </p>
+
+            <p class="introduction-paragraph">
+                历史的巨轮滚滚向前，在浩瀚无垠的时间长河里，五年仿佛只是弹指一挥间。在这个具有里程碑意义的时刻，我们有必要回顾我们缘何而聚，功成几何，而后再次整装待发。在新的历史起点上，粤港澳大湾区将继续深化改革开放，加强区域合作，推动创新发展，为实现中华民族伟大复兴的中国梦贡献湾区力量。
+            </p>
+
+            <p class="introduction-paragraph">
+                我们有理由相信，粤港澳大湾区的明天将更加辉煌，成为世界级城市群的典范。正如晨曦中的珠江口，波光粼粼，预示着一个充满希望的未来。
+            </p>
+
+            <!-- <img src="images/标题背景图.png" alt="尾声晨曦" style="width: 100vw; max-width: 100vw; position: relative; left: 50%; transform: translateX(-50%); margin: 2rem 0; border-radius: 0; box-shadow: none;"> -->
+        </div>
+    </section>
+
+    <footer style="background-image: url('images/尾图.png'); background-size: cover; background-position: center;">
+        <img src="images/SYSU.png" loading="lazy" width="469" sizes="(max-width: 479px) 100vw, 469px"><br>
+        <!-- <img src="images/SYSUJC.jpg" loading="lazy" width="469" sizes="(max-width: 479px) 100vw, 469px"> -->
+        <p style="line-height: 30px;">团队成员: 谷端为 李欣纯 张涵 张杨 周芳妍<br>指导老师：林淑金<br>中山大学新闻传播学院<br>作品呈现所使用的全部图片及可视化呈现均为团队自行制作<br>‍</p>
+    </footer>
+
+</main>
+
+
+</body>
+</html> 
